@@ -20,6 +20,9 @@ public class DNITest
 
     private String[] falseDNI = {"98@45184M", "3577820077Y", "8477FP439A", "57333718Ñ", "479543//1B", "9199!!!3373C",
                                     "265R", "P5349239R", "3()335275P", "X4349478G"};
+
+    private String[] falseNies = {"46373752Y", "X2356162Ñ", "@8259178K", "X03565107C", "XL6901377C", "47150522B","X148618Q",
+            "X939//9096P", "A5060398K", "X3731561O"};
     @Test
     public void verifyDNITest()
     {
@@ -39,6 +42,10 @@ public class DNITest
         DNI dni = new DNI();
         for (String document : nies){
             assertTrue(dni.verify(document, REGEXNIE));
+        }
+
+        for (String document : falseNies){
+            assertFalse(dni.verify(document, REGEXNIE));
         }
     }
 }
