@@ -3,7 +3,7 @@ package org.lasencinas;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DNI{
+public class Documents {
 
     //Attributes
     private static final String REGEX= "^([0-9]{8}|^[XYZ][0-9]{7})[^IÑOU]";

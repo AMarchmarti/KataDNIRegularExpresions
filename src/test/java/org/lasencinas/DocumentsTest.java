@@ -3,15 +3,11 @@ package org.lasencinas;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class DNITest
+public class DocumentsTest
 {
-    private static final String REGEXDNI = "^[0-9]{8}[^IÑOU]";
-    private static final String REGEXNIE = "^[XYZ][0-9]{7}[^IÑOU]";
-
     private String [] dnis = {"78484464T","72376173A","01817200Q","95882054E","63587725Q",
                             "26861694V","21616083Q","26868974Y","40135330P","89044648X"};
 
@@ -34,38 +30,38 @@ public class DNITest
     @Test
     public void verifyDNITest()
     {
-        DNI dni = new DNI();
+        Documents documents = new Documents();
         for (String document : dnis){
-            assertTrue(dni.verify(document, REGEXDNI));
+            assertTrue(documents.verify(document, Regex.DNI.getRegex()));
         }
 
         for (String document : falseDNI){
-            assertFalse(dni.verify(document,REGEXDNI));
+            assertFalse(documents.verify(document,Regex.DNI.getRegex()));
         }
 
     }
 
     @Test
     public void verifyNIETest(){
-        DNI dni = new DNI();
+        Documents documents = new Documents();
         for (String document : nies){
-            assertTrue(dni.verify(document, REGEXNIE));
+            assertTrue(documents.verify(document,Regex.NIE.getRegex()));
         }
 
         for (String document : falseNies){
-            assertFalse(dni.verify(document, REGEXNIE));
+            assertFalse(documents.verify(document, Regex.NIE.getRegex()));
         }
     }
 
     @Test
     public void vefyDocuments(){
-        DNI dni = new DNI();
-        for (String document : documents){
-            assertTrue(dni.verify(document));
+        Documents documents = new Documents();
+        for (String document : this.documents){
+            assertTrue(documents.verify(document));
         }
 
         for (String document : falseDocuments){
-            assertFalse(dni.verify(document));
+            assertFalse(documents.verify(document));
         }
     }
 }
