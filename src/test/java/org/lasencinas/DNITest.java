@@ -27,6 +27,10 @@ public class DNITest
     private String[] documents = {"78484464T","72376173A","01817200Q","95882054E","63587725Q",
             "26861694V","21616083Q","26868974Y","40135330P","89044648X","Y6373752Y", "X2356162L", "Z8259178K", "X0565107C", "X6901377C", "Z7150522B","X1486138Q",
             "X9399096P", "Y5060398K", "X3731561H"};
+
+    private String[] falseDocuments = {"98@45184M", "3577820077Y", "8477FP439A", "57333718Ñ", "479543//1B", "9199!!!3373C",
+            "265R", "P5349239R", "3()335275P", "X2356162Ñ", "@8259178K", "X03565107C", "XL6901377C","X148618Q",
+            "X939//9096P", "A5060398K", "X3731561O"};
     @Test
     public void verifyDNITest()
     {
@@ -58,6 +62,10 @@ public class DNITest
         DNI dni = new DNI();
         for (String document : documents){
             assertTrue(dni.verify(document));
+        }
+
+        for (String document : falseDocuments){
+            assertFalse(dni.verify(document));
         }
     }
 }

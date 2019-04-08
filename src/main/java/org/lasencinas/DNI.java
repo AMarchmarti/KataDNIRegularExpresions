@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class DNI{
 
     //Attributes
-    private static final String REGEX= "^[0-9]{8}[^IÑOU]|^[XYZ][0-9]{7}[^IÑOU]";
+    private static final String REGEX= "^([0-9]{8}|^[XYZ][0-9]{7})[^IÑOU]";
     private Pattern pattern = null;
     private Matcher match = null;
 
