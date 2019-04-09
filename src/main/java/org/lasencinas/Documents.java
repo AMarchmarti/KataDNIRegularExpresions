@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 public class Documents {
 
     //Attributes
-    private static final String REGEX= "^([0-9]{8}|^[XYZ][0-9]{7})[^IÑOU]";
     private Pattern pattern = null;
     private Matcher match = null;
 
@@ -36,5 +35,4 @@ public class Documents {
         return dni.matches(regex);
     }
 
-    public Boolean verify(String dni){ return dni.matches(REGEX);}
 }
