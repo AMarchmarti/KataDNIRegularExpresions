@@ -94,10 +94,13 @@ public class DocumentsTest
         Documents documents = new Documents();
         String regex = Regex.DNINUM.getRegex();
         String dni = "78484464T";
+        String falseDni = "78484464O";
         assertTrue(documents.verifyLetter(dni, regex));
+        assertFalse(documents.verifyLetter(falseDni, regex));
         for (String document : dnis){
             assertTrue(documents.verifyLetter(document, regex));
         }
+
     }
 
 }
