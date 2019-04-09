@@ -31,23 +31,36 @@ public class Documents {
 
     //Logic
 
-    public Boolean verify(String dni, String regex){
+    public Boolean verify(String dni, String regex) {
         return dni.matches(regex);
     }
 
-    public Integer controlNumber(String dni){
-        setPattern(Regex.DNINUM.getRegex());
+    public Boolean findRegex(String dni, String regex) {
+        setPattern(regex);
         setMatch(dni);
-        if (getMatch().find()){
-            Integer num = Integer.parseInt(getMatch().group());
-            return num % ControlCodeDNI.values().length;}
-        return null;
+        if (getMatch().find()) {
+            return true;
+        }
+        return false;
     }
 
 
+    public Integer controlNumber(String dni) {
+        if (findRegex(dni, Regex.DNINUM.getRegex())) {
+            Integer num = Integer.parseInt(getMatch().group());
+            return num % ControlCodeDNI.values().length;
+        }
+        return null;
+    }
 
-
-
-
-
+    public Character findCorrectLetter(String dni) {
+        if (findRegex(dni, Regex.DNINIELETTER.getRegex())) {
+            for (ControlCodeDNI code : ControlCodeDNI.values()) {
+                if ((code.getRest() == controlNumber(dni))) {
+                    return code.getLetter();
+                }
+            }
+        }
+        return null;
+    }
 }
