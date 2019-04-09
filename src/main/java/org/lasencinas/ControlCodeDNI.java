@@ -2,14 +2,23 @@ package org.lasencinas;
 
 public enum ControlCodeDNI {
 
-    T(0), R(1),	W(2), A(3),	G(4), M(5),	Y(6), F(7),	P(8), D(9),	X(10),
-    B(11), N(12), J(13),	Z(14), S(15), Q(16), V(17, H(18), L(19), C(20),
-    K(21), E(22);
+    ZERO('T', 0), ONE('R', 1),	TWO('W', 2), THREE('A', 3),
+    FOUR('G', 4), FIVE('M', 5),	SIX('Y', 6), SEVEN('F', 7),
+    EIGHT('P', 8), NINE('D', 9), TEN('X', 10), ELEVEN('B', 11),
+    TWELVE('N', 12), THIRTEEN('J', 13),	FOURTEEN('Z', 14),
+    FIFTEEN('S', 15), SIXTEEN('Q', 16), SEVENTEEN('V',17),
+    EIGHTEEN('H', 18), NINETEEN('L', 19), TWENTY('C', 20),
+    TWENTYONE('K', 21), TWENTYTWO('E', 22);
+
 
     private Integer code;
+    private Character letter;
 
-    ControlCodeDNI(Integer code){
+
+    ControlCodeDNI(Character letter, Integer code){
         this.code = code;
-
+        this.letter = letter;
     }
+
+
 }
