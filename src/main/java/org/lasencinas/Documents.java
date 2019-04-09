@@ -45,22 +45,24 @@ public class Documents {
     }
 
 
-    public Integer controlNumber(String dni) {
-        if (findRegex(dni, Regex.DNINUM.getRegex())) {
+    public Integer controlNumber(String dni, String regex) {
+        if (findRegex(dni, regex)) {
             Integer num = Integer.parseInt(getMatch().group());
             return num % ControlCodeDNI.values().length;
         }
         return null;
     }
 
-    public Character findCorrectLetter(String dni) {
-        if (findRegex(dni, Regex.DNINIELETTER.getRegex())) {
+    public Character findCorrectLetter(String dni, String regex) {
             for (ControlCodeDNI code : ControlCodeDNI.values()) {
-                if ((code.getRest() == controlNumber(dni))) {
+                if ((code.getRest() == controlNumber(dni, regex))) {
                     return code.getLetter();
                 }
             }
-        }
         return null;
     }
+    /*
+    public Boolean verifyLetter(String dni){
+
+    }*/
 }

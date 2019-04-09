@@ -68,23 +68,25 @@ public class DocumentsTest
     @Test
     public void controlNumberTest(){
         Documents documents = new Documents();
+        String regex = Regex.DNINUM.getRegex();
         String dni = "78484464T";
         String dniDos = "72376173A";
         String dniTres = "01817200Q";
-        assertEquals(0, documents.controlNumber(dni), 0);
-        assertEquals(3, documents.controlNumber(dniDos), 0);
-        assertEquals(16, documents.controlNumber(dniTres), 0);
+        assertEquals(0, documents.controlNumber(dni, regex), 0);
+        assertEquals(3, documents.controlNumber(dniDos, regex), 0);
+        assertEquals(16, documents.controlNumber(dniTres, regex), 0);
     }
 
     @Test
     public void findLetterTest(){
         Documents documents = new Documents();
+        String regex = Regex.DNINUM.getRegex();
         String dni = "78484464T";
         String dniDos = "72376173A";
         String dniTres = "01817200Q";
-        assertThat('T').isEqualTo(documents.findCorrectLetter(dni));
-        assertThat('A').isEqualTo(documents.findCorrectLetter(dniDos));
-        assertThat('Q').isEqualTo(documents.findCorrectLetter(dniTres));
+        assertThat('T').isEqualTo(documents.findCorrectLetter(dni, regex));
+        assertThat('A').isEqualTo(documents.findCorrectLetter(dniDos, regex));
+        assertThat('Q').isEqualTo(documents.findCorrectLetter(dniTres, regex));
     }
 
 }
