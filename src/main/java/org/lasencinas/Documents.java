@@ -61,8 +61,15 @@ public class Documents {
             }
         return null;
     }
-    /*
-    public Boolean verifyLetter(String dni){
 
-    }*/
+    public Boolean verifyLetter(String dni, String regex){
+        if (findRegex(dni, Regex.DNINIELETTER.getRegex())){
+            String letter = getMatch().group();
+            Character correctLetter = findCorrectLetter(dni, regex);
+            if(letter.equals(correctLetter.toString())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
