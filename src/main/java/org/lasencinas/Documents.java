@@ -49,13 +49,13 @@ public class Documents {
             String[] dniSplit = dni.split(Regex.NIEFIRSTLETTER.getRegex());
             switch (letter){
                 case "X":
-                    return letter.replace('X', '0').concat(dniSplit[2]) ;
+                    return letter.replace('X', '0') + dniSplit[1] ;
 
                 case "Y":
-                    return letter.replace('Y', '1').concat(dniSplit[2]);
+                    return letter.replace('Y', '1')+ dniSplit[1];
 
                 case "Z":
-                    return letter.replace('Z', '2').concat(dniSplit[2]);
+                    return letter.replace('Z', '2') + dniSplit[1] ;
 
                 default:
                     return letter;
@@ -71,20 +71,20 @@ public class Documents {
         }
         return null;
     }
-/*
+
     public Integer controlNumberDocument(String dni, String regex){
         if (regex == Regex.DNINUM.getRegex()){
             return controlNumber(dni, Regex.DNINUM.getRegex());
         }else if (regex == Regex.NIENUM.getRegex()){
-
-            return controlNumber(dni, Regex.NIENUM.getRegex()) + nieNumber(dni);
+            String nie = nieNumber(dni);
+            return controlNumber(nie, Regex.DNINUM.getRegex());
         }
         return null;
-    }*/
+    }
 
     public Character findCorrectLetter(String dni, String regex) {
             for (ControlCodeDNI code : ControlCodeDNI.values()) {
-                if ((code.getRest() == controlNumber(dni, regex))) {
+                if ((code.getRest() == controlNumberDocument(dni, regex))) {
                     return code.getLetter();
                 }
             }
