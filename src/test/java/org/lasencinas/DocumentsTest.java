@@ -1,9 +1,8 @@
 package org.lasencinas;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 public class DocumentsTest
@@ -65,10 +64,10 @@ public class DocumentsTest
     }
 
     @Test
-    public void codeControlDNITest(){
+    public void controlNumberTest(){
         Documents documents = new Documents();
-        for (String document : dnis){
-            assertTrue(documents.controlCode(document));
+        String dni = "78484464T";
+        assertEquals(45, documents.controlCodeDNI(dni), 0);
         }
-    }
+
 }
