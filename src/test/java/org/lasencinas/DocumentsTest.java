@@ -96,7 +96,7 @@ public class DocumentsTest
         String dni = "78484464T";
         assertTrue(documents.verifyLetter(dni, regex));
         for (String document : dnis){
-            assertTrue(documents.verifyLetter(dni, regex));
+            assertTrue(documents.verifyLetter(document, regex));
         }
     }
 
