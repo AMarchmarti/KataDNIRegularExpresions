@@ -6,13 +6,13 @@ import java.util.regex.Pattern;
 public class Documents {
 
     //Attributes
-    private Pattern pattern = null;
-    private Matcher match = null;
+    private Pattern pattern;
+    private Matcher match;
 
     //Setters
 
     public void setPattern(String regex) {
-        this.pattern.compile(regex);
+        this.pattern = Pattern.compile(regex);
     }
 
     public void setMatch(String dni) {
@@ -34,5 +34,20 @@ public class Documents {
     public Boolean verify(String dni, String regex){
         return dni.matches(regex);
     }
+
+    public Integer controlNumber(String dni){
+        setPattern(Regex.DNINUM.getRegex());
+        setMatch(dni);
+        if (getMatch().find()){
+            Integer num = Integer.parseInt(getMatch().group());
+            return num % ControlCodeDNI.values().length;}
+        return null;
+    }
+
+
+
+
+
+
 
 }
