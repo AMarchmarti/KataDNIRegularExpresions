@@ -31,31 +31,31 @@ public class Documents {
 
     //Logic
 
-    public Boolean verify(String dni, String regex) {
-        return dni.matches(regex);
+    public Boolean verify(String documents, String regex) {
+        return documents.matches(regex);
     }
 
-    public Boolean findRegex(String dni, String regex) {
+    public Boolean findRegex(String documents, String regex) {
         setPattern(regex);
-        setMatch(dni);
+        setMatch(documents);
         if (getMatch().find()) {
             return true;
         }
         return false;
     }
-    public String nieNumber(String dni){
-        if (findRegex(dni, Regex.NIEFIRSTLETTER.getRegex())){
+    public String nieNumber(String nie){
+        if (findRegex(nie, Regex.NIEFIRSTLETTER.getRegex())){
             String letter = getMatch().group();
-            String[] dniSplit = dni.split(Regex.NIEFIRSTLETTER.getRegex());
+            String[] nieSplit = nie.split(Regex.NIEFIRSTLETTER.getRegex());
             switch (letter){
                 case "X":
-                    return letter.replace('X', '0') + dniSplit[1] ;
+                    return letter.replace('X', '0') + nieSplit[1] ;
 
                 case "Y":
-                    return letter.replace('Y', '1')+ dniSplit[1];
+                    return letter.replace('Y', '1')+ nieSplit[1];
 
                 case "Z":
-                    return letter.replace('Z', '2') + dniSplit[1] ;
+                    return letter.replace('Z', '2') + nieSplit[1] ;
 
                 default:
                     return letter;
@@ -64,37 +64,37 @@ public class Documents {
             return null;
     }
 
-    public Integer controlNumber(String dni, String regex) {
-        if (findRegex(dni, regex)) {
+    public Integer controlNumber(String documents, String regex) {
+        if (findRegex(documents, regex)) {
             Integer num = Integer.parseInt(getMatch().group());
             return num % ControlCodeDNI.values().length;
         }
         return null;
     }
 
-    public Integer controlNumberDocument(String dni, String regex){
+    public Integer controlNumberDocument(String documents, String regex){
         if (regex == Regex.DNINUM.getRegex()){
-            return controlNumber(dni, Regex.DNINUM.getRegex());
+            return controlNumber(documents, Regex.DNINUM.getRegex());
         }else if (regex == Regex.NIENUM.getRegex()){
-            String nie = nieNumber(dni);
+            String nie = nieNumber(documents);
             return controlNumber(nie, Regex.DNINUM.getRegex());
         }
         return null;
     }
 
-    public Character findCorrectLetter(String dni, String regex) {
+    public Character findCorrectLetter(String documents, String regex) {
             for (ControlCodeDNI code : ControlCodeDNI.values()) {
-                if ((code.getRest() == controlNumberDocument(dni, regex))) {
+                if ((code.getRest() == controlNumberDocument(documents, regex))) {
                     return code.getLetter();
                 }
             }
         return null;
     }
 
-    public Boolean verifyLetter(String dni, String regex){
-        if (findRegex(dni, Regex.DNINIELETTER.getRegex())){
+    public Boolean verifyLetter(String documents, String regex){
+        if (findRegex(documents, Regex.DNINIELETTER.getRegex())){
             String letter = getMatch().group();
-            Character correctLetter = findCorrectLetter(dni, regex);
+            Character correctLetter = findCorrectLetter(documents, regex);
             if(letter.equals(correctLetter.toString())){
                 return true;
             }
@@ -102,9 +102,9 @@ public class Documents {
         return false;
     }
 
-    public Boolean verifyDocument(String dni, String regex, String regex2){
-        if (verify(dni, regex)){
-           return verifyLetter(dni, regex2);
+    public Boolean verifyDocument(String documents, String regex, String regex2){
+        if (verify(documents, regex)){
+           return verifyLetter(documents, regex2);
         }
         return false;
     }
