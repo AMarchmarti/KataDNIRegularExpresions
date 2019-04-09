@@ -20,5 +20,11 @@ public enum ControlCodeDNI {
         this.letter = letter;
     }
 
+    public Character getLetter() {
+        return letter;
+    }
 
+    public Integer getRest() {
+        return code;
+    }
 }
