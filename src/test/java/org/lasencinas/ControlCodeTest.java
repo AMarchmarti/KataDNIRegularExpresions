@@ -20,6 +20,7 @@ public class ControlCodeTest {
             codes += 1;
         }
         assertThat(codes).isEqualTo(ControlCodeDNI.values().length);
+        assertEquals(23, ControlCodeDNI.values().length);
     }
 
     @Test
@@ -28,7 +29,8 @@ public class ControlCodeTest {
         assertThat(code).isInstanceOf(ControlCodeDNI.class);
         assertThat(code.ordinal()).isEqualTo(15);
         assertThat(code.equals(code.FIFTEEN)).isEqualTo(true);
-        assertThat(code.values()[15]).isEqualTo(code);}
+        assertThat(code.values()[15]).isEqualTo(code);
+    }
 
     @Test
     public void ControlCodeLetterTest() {
@@ -41,4 +43,5 @@ public class ControlCodeTest {
         ControlCodeDNI code = ControlCodeDNI.TWENTY;
         assertThat(code.getRest()).isEqualTo(20);
     }
+
 }

@@ -63,11 +63,16 @@ public class DocumentsTest
         }
     }
 
+
     @Test
     public void controlNumberTest(){
         Documents documents = new Documents();
         String dni = "78484464T";
-        assertEquals(45, documents.controlCodeDNI(dni), 0);
-        }
+        String dniDos = "72376173A";
+        String dniTres = "01817200Q";
+        assertEquals(0, documents.controlNumber(dni), 0);
+        assertEquals(3, documents.controlNumber(dniDos), 0);
+        assertEquals(16, documents.controlNumber(dniTres), 0);
+    }
 
 }
