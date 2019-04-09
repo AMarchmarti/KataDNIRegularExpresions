@@ -27,4 +27,5 @@ public enum ControlCodeDNI {
     public Integer getRest() {
         return code;
     }
+
 }
