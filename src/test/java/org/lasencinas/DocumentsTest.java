@@ -64,5 +64,11 @@ public class DocumentsTest
         }
     }
 
-
+    @Test
+    public void codeControlDNITest(){
+        Documents documents = new Documents();
+        for (String document : dnis){
+            assertTrue(documents.controlCode(document));
+        }
+    }
 }
