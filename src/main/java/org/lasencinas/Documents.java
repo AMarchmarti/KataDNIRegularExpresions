@@ -43,7 +43,26 @@ public class Documents {
         }
         return false;
     }
+    public String nieNumber(String dni){
+        if (findRegex(dni, Regex.NIEFIRSTLETTER.getRegex())){
+            String letter = getMatch().group();
+            String[] dniSplit = dni.split(Regex.NIEFIRSTLETTER.getRegex());
+            switch (letter){
+                case "X":
+                    return letter.replace('X', '0').concat(dniSplit[2]) ;
 
+                case "Y":
+                    return letter.replace('Y', '1').concat(dniSplit[2]);
+
+                case "Z":
+                    return letter.replace('Z', '2').concat(dniSplit[2]);
+
+                default:
+                    return letter;
+            }
+        }
+            return null;
+    }
 
     public Integer controlNumber(String dni, String regex) {
         if (findRegex(dni, regex)) {
@@ -52,6 +71,16 @@ public class Documents {
         }
         return null;
     }
+/*
+    public Integer controlNumberDocument(String dni, String regex){
+        if (regex == Regex.DNINUM.getRegex()){
+            return controlNumber(dni, Regex.DNINUM.getRegex());
+        }else if (regex == Regex.NIENUM.getRegex()){
+
+            return controlNumber(dni, Regex.NIENUM.getRegex()) + nieNumber(dni);
+        }
+        return null;
+    }*/
 
     public Character findCorrectLetter(String dni, String regex) {
             for (ControlCodeDNI code : ControlCodeDNI.values()) {
@@ -69,6 +98,13 @@ public class Documents {
             if(letter.equals(correctLetter.toString())){
                 return true;
             }
+        }
+        return false;
+    }
+
+    public Boolean verifyDocument(String dni, String regex, String regex2){
+        if (verify(dni, regex)){
+           return verifyLetter(dni, regex2);
         }
         return false;
     }
