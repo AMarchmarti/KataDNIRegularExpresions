@@ -113,6 +113,14 @@ public class DocumentsTest
         for (String document : falseDNI){
             assertFalse(documents.verifyDocument(document, Regex.DNI.getRegex(), Regex.DNINUM.getRegex()));
         }
+
+        for (String document : nies){
+            assertTrue(documents.verifyDocument(document, Regex.NIE.getRegex(),Regex.NIENUM.getRegex()));
+        }
+
+        for (String document : falseNies){
+            assertFalse(documents.verifyDocument(document, Regex.NIE.getRegex(), Regex.NIENUM.getRegex()));
+        }
     }
 
     @Test
@@ -122,11 +130,11 @@ public class DocumentsTest
         String nieDos = "X2356162L";
         String nieTres = "Z8259178K";
         assertEquals("16373752Y", documents.nieNumber(nie));
-        assertEquals("02356162L", documents.nieNumber(nieDos),0);
-        assertEquals("28259178K", documents.nieNumber(nieTres),0);
+        assertEquals("02356162L", documents.nieNumber(nieDos));
+        assertEquals("28259178K", documents.nieNumber(nieTres));
     }
 
-   /* @Test
+    @Test
     public void controlNumberDocumentTest(){
         Documents documents = new Documents();
         String dni = "78484464T";
@@ -142,6 +150,6 @@ public class DocumentsTest
         assertEquals(19, documents.controlNumberDocument(nieDos, Regex.NIENUM.getRegex()), 0);
         assertEquals(21, documents.controlNumberDocument(nieTres, Regex.NIENUM.getRegex()), 0);
 
-    }*/
+    }
 
 }
