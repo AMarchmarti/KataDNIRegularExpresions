@@ -3,6 +3,7 @@ package org.lasencinas;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class DocumentsTest
@@ -73,6 +74,17 @@ public class DocumentsTest
         assertEquals(0, documents.controlNumber(dni), 0);
         assertEquals(3, documents.controlNumber(dniDos), 0);
         assertEquals(16, documents.controlNumber(dniTres), 0);
+    }
+
+    @Test
+    public void findLetterTest(){
+        Documents documents = new Documents();
+        String dni = "78484464T";
+        String dniDos = "72376173A";
+        String dniTres = "01817200Q";
+        assertThat('T').isEqualTo(documents.findCorrectLetter(dni));
+        assertThat('A').isEqualTo(documents.findCorrectLetter(dniDos));
+        assertThat('Q').isEqualTo(documents.findCorrectLetter(dniTres));
     }
 
 }
