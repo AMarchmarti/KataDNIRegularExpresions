@@ -89,4 +89,15 @@ public class DocumentsTest
         assertThat('Q').isEqualTo(documents.findCorrectLetter(dniTres, regex));
     }
 
+    @Test
+    public void verifyLetterTest(){
+        Documents documents = new Documents();
+        String regex = Regex.DNINUM.getRegex();
+        String dni = "78484464T";
+        assertTrue(documents.verifyLetter(dni, regex));
+        for (String document : dnis){
+            assertTrue(documents.verifyLetter(dni, regex));
+        }
+    }
+
 }
